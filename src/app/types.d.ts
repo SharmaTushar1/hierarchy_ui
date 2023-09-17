@@ -11,7 +11,7 @@ type Member = {
 type Team = {
   id: string,
   name: string,
-  items?: Member[] // teamName: [{id, memberName, isLeader}] items is just the list of members in the team
+  items: Member[] // teamName: [{id, memberName, isLeader}] items is just the list of members in the team
 }
 
 type Head = { // type for all 3 heads: head of staff/hr, head of engineering, head of design
@@ -20,7 +20,7 @@ type Head = { // type for all 3 heads: head of staff/hr, head of engineering, he
     phone_number: string,
     email: string,
     position: string,
-    items?: Team[] // teams under every head
+    items: Team[] // teams under every head
 }
 
 type CEO = { // ceo
@@ -29,5 +29,5 @@ type CEO = { // ceo
   phone_number: string,
   email: string,
   position: 'CEO',
-  items?: Head[]
+  items: Head[]
 }
