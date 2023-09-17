@@ -71,8 +71,8 @@ const PageClient = () => {
 
   return (
     <div>
-      <Hierarchy root={CEO} />
-        'The root employee is present'
+      {Object.values(rootEmployee).length==0 ? (<button className="m-8" onClick={() => toggleAddMemberPopUp()}>Add Member</button>): (
+        <Hierarchy root = {rootEmployee} />
       )}
     </div>
   )
