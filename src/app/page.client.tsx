@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useStore } from "./store";
 import Hierarchy from "./_components/Hierarchy";
+import AddHeadOrCeoPopUp from "./_components/AddHeadOrCeoPopUp";
 
 
 const PageClient = () => {
@@ -13,6 +14,7 @@ const PageClient = () => {
   const toggleAddMemberPopUp = () => {
     setAddMemberPopUp(prev => !prev);
   }
+
   const CEO: CEO = {
     id: "1",
     name: "Tushar1",
@@ -74,6 +76,7 @@ const PageClient = () => {
       {Object.values(rootEmployee).length==0 ? (<button className="m-8" onClick={() => toggleAddMemberPopUp()}>Add Member</button>): (
         <Hierarchy root = {rootEmployee} />
       )}
+      {addMemberPopUp && <AddHeadOrCeoPopUp toggle={toggleAddMemberPopUp} />}
     </div>
   )
 }
