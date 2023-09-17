@@ -4,11 +4,13 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import AddHeadOrCeoPopUp from "./AddHeadOrCeoPopUp";
+import { useStore } from "../store";
 
 function Hierarchy({ root }: {root: CEO | Head | Team | Member}) {
   const [expand, setExpand] = useState(false);
 
   const [addMemberPopUp, setAddMemberPopUp] = useState(false);
+  const positions = useStore(store => store.positions);
 
   const toggleAddMemberPopUp = () => {
     console.log(addMemberPopUp);
@@ -39,7 +41,8 @@ function Hierarchy({ root }: {root: CEO | Head | Team | Member}) {
             </div>
           </div>
         </div>
-      {addMemberPopUp && <AddHeadOrCeoPopUp toggle={toggleAddMemberPopUp} />}
+        {/* @ts-ignore because root.position is giving warning as Team doesn't have position but I am checking for it */}
+      {root.position && addMemberPopUp && <AddHeadOrCeoPopUp toggle={toggleAddMemberPopUp} parent={positions.indexOf(root.position)} />}
 
         <div style={itemsDivStyle}>{/* @ts-ignore  */}
           {root.items.map((item: Head | Team ) => {

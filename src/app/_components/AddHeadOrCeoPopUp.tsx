@@ -5,7 +5,8 @@ import { useState } from "react";
 import { useStore } from "../store";
 import { useForm } from 'react-hook-form';
 
-const AddHeadOrCeoPopUp = ({toggle}: {toggle: () => void}) => {
+const AddHeadOrCeoPopUp = ({toggle, parent}: {toggle: () => void, parent: number | null}) => {
+
 
   const positions = useStore(state => state.positions);
   const setRootEmployee = useStore(state => state.setRootEmployee);
@@ -39,7 +40,7 @@ const AddHeadOrCeoPopUp = ({toggle}: {toggle: () => void}) => {
         {positions[0]}
       </option>
     </select>
-    } else if (rootEmployee.items.length == 0) {
+    } else if (parent === 0) { // if parent is CEO
       return <select id="position" {...register('position', { required: 'Position is required' })}>
         <option value={positions[1]}>
           {positions[1]}
