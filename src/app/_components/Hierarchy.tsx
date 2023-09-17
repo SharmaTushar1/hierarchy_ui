@@ -1,7 +1,19 @@
 import { useState } from "react";
+import EditIcon from '@mui/icons-material/Edit';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import AddHeadOrCeoPopUp from "./AddHeadOrCeoPopUp";
 
 function Hierarchy({ root }: {root: CEO | Head | Team | Member}) {
   const [expand, setExpand] = useState(false);
+
+  const [addMemberPopUp, setAddMemberPopUp] = useState(false);
+
+  const toggleAddMemberPopUp = () => {
+    console.log(addMemberPopUp);
+    setAddMemberPopUp(prev => !prev);
+  }
 
   const itemsDivStyle = {
     marginTop: 0,
@@ -15,10 +27,19 @@ function Hierarchy({ root }: {root: CEO | Head | Team | Member}) {
     return (
       <div style={{ cursor: "pointer" }}>
         <div onClick={() => setExpand(!expand)}>
-          <div>{/* @ts-ignore */}
-            <span>{root.position?`🧑 ${root.position} (${root.name})`:`™${root.name}`}</span> {/* First position if it's a CEO | Head otherwise name if it's a Team */}
+          <div className="w-[80%] mx-auto flex justify-between">
+            <div>{/* @ts-ignore */}
+              <span>{root.position?`🧑 ${root.position} (${root.name})`:`™${root.name}`}</span> {/* First position if it's a CEO | Head otherwise name if it's a Team */}
+            </div>
+            <div className="">
+              <EditIcon onClick={() => console.log("Edit is clicked")} />
+              <AddIcon onClick={() => toggleAddMemberPopUp()} />
+              <RemoveIcon onClick={() => console.log("Remove is clicked")} />
+              <MoreHorizIcon onClick={() => console.log("More is clicked")}  />
+            </div>
           </div>
         </div>
+      {addMemberPopUp && <AddHeadOrCeoPopUp toggle={toggleAddMemberPopUp} />}
 
         <div style={itemsDivStyle}>{/* @ts-ignore  */}
           {root.items.map((item: Head | Team ) => {

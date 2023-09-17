@@ -21,24 +21,14 @@ const AddHeadOrCeoPopUp = ({toggle}: {toggle: () => void}) => {
 
 
   const onSubmit = (employeeData: any) => { // TODO: take care of this for now just using any
-    console.log(employeeData);
+    let updatedRootEmployee = {...rootEmployee};
     if (employeeData.position === 'CEO') {
-      rootEmployee.id = employeeData.id;
-      rootEmployee.name = employeeData.name;
-      rootEmployee.email = employeeData.email;
-      rootEmployee.position = 'CEO';
-      rootEmployee.phone_number = employeeData.phone_number;
-      rootEmployee.items = [];
+        updatedRootEmployee = {...employeeData, items: []};
     } else {
-      rootEmployee.id = employeeData.id;
-      rootEmployee.name = employeeData.name;
-      rootEmployee.email = employeeData.email;
-      rootEmployee.position = employeeData.position;
-      rootEmployee.phone_number = employeeData.phone_number;
-      rootEmployee.items = [];
+      const headEmployee = {...employeeData, items: []};
     }
-    setRootEmployee(rootEmployee);
-    localStorage.setItem('rootEmployee', JSON.stringify(rootEmployee)); // Storing in localstorage
+    setRootEmployee(updatedRootEmployee);
+    localStorage.setItem('rootEmployee', JSON.stringify(updatedRootEmployee)); // Storing in localstorage
   };
 
   const DropDown = () => {
