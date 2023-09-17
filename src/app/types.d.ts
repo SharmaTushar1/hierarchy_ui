@@ -28,6 +28,6 @@ type CEO = { // ceo
   name: string,
   phone_number: string,
   email: string,
-  position: 'CEO',
+  position: string,
   items: Head[]
 }
