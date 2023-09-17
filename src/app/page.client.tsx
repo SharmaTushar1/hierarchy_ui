@@ -77,6 +77,7 @@ const PageClient = () => {
         <Hierarchy root = {rootEmployee} />
       )}
       {addMemberPopUp && <AddHeadOrCeoPopUp toggle={toggleAddMemberPopUp} parent={null} />}
+      {/* {editMemberPopUp && <EditMemberPopUp employee_id = {currenEmployeeId} toggle = {hideEditPopUp} />} */}
     </div>
   )
 }
