@@ -6,10 +6,12 @@ type Member = {
   isLeader: boolean,
 }
 
-// Using this way we cannot have same names which was asked as a Bonus point in the assignment.
+// We will have to run a loop to check if the Team with a name is present to avoid duplicate team name that is in the Bonus point.
 
 type Team = {
-  [name: string]: [members: Member[]] // teamName: [{id, memberName, isLeader}]
+  id: string,
+  name: string,
+  items?: Member[] // teamName: [{id, memberName, isLeader}] items is just the list of members in the team
 }
 
 type Head = { // type for all 3 heads: head of staff/hr, head of engineering, head of design
@@ -17,7 +19,8 @@ type Head = { // type for all 3 heads: head of staff/hr, head of engineering, he
     name: string,
     phone_number: string,
     email: string,
-    items: Team[] // teams under every head
+    position: string,
+    items?: Team[] // teams under every head
 }
 
 type CEO = { // ceo
@@ -25,5 +28,6 @@ type CEO = { // ceo
   name: string,
   phone_number: string,
   email: string,
-  items: Head[]
+  position: 'CEO',
+  items?: Head[]
 }
