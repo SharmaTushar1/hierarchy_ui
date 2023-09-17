@@ -26,6 +26,7 @@ const AddHeadOrCeoPopUp = ({toggle}: {toggle: () => void}) => {
         updatedRootEmployee = {...employeeData, items: []};
     } else {
       const headEmployee = {...employeeData, items: []};
+      updatedRootEmployee.items.push(headEmployee);
     }
     setRootEmployee(updatedRootEmployee);
     localStorage.setItem('rootEmployee', JSON.stringify(updatedRootEmployee)); // Storing in localstorage
