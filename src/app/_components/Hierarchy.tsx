@@ -43,11 +43,10 @@ function Hierarchy({ root }: { root: CEO | Head | Team | Member }) {
     return (
       <div style={{ cursor: "pointer" }}>
         <div onClick={() => setExpand(!expand)}>
-          <div className="w-[80%] mx-auto flex justify-between">
+          <div className="mx-auto flex justify-between">
             <div>
               <span>
-              {/* @ts-ignore */}
-                {root.position //@ts-ignore
+                {root.position!=undefined //@ts-ignore
                   ? `🧑 ${root.position} (${root.name})`
                   : `™${root.name}`}
               </span>{" "}

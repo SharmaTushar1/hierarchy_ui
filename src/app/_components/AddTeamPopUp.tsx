@@ -19,21 +19,12 @@ const AddTeamPopUp = ({toggle, parent}: {toggle: ()=>void, parent: Head}) => {
   // }
 
   const onSubmit = (teamData: any) => { // TODO: take care of this for now just using any
-    // console.log("team wala")
     const teamToAdd = {...teamData, items: []};
-    // console.log("Yaha => ",parent.id);
-    const obj = addObject(rootEmployee.items, parent.id, teamData);
-    // console.log("obj => ", obj);
+    const obj = addObject(rootEmployee, parent.id, teamToAdd);
+    console.log("obj => ", ...obj);
     // console.log("object[0] => ", obj[0])
-    const updatedRootEmployee = {...rootEmployee, items:[...rootEmployee.items, ...obj]}
-    // console.log("updatedObject => ", updatedObject);
+    const updatedRootEmployee = {...rootEmployee, items: [...obj]};
     setRootEmployee(updatedRootEmployee);
-    // console.log(root);
-    // const updatedHead:Head = {...root, items: [{...teamToAdd}]};
-    // console.log(`updatedHead => `, updatedHead);
-    // const updatedRootEmployee = {...rootEmployee};
-    // updatedRootEmployee.items.
-    // setRootEmployee(updatedRootEmployee);
     localStorage.setItem('rootEmployee', JSON.stringify(updatedRootEmployee)); // Storing in localstorage
   };
 

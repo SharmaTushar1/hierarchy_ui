@@ -1,26 +1,29 @@
 // TODO: Use this function for adding object everywhere
 
-export const addObject = (root: Head[] | Team[] | Member[], id: string, objectToAdd: Head | Team | Member) => {
-  // console.log("root from addObject => ", root);
+export const addObject = (root: CEO | Head | Team | Member, id: string, objectToAdd: Head | Team | Member) => {
+  console.log("root from addObject => ", root);
   //@ts-ignore
-  return root.map((obj) => {
-    // console.log("In once")
+  return root.items.map((obj) => {
+    console.log("obj.id => ",obj.id, ", id => ",id);
     if (obj.id == id) {
+      console.log("obj => ", obj)
+      console.log("obj.items => ",obj.items);
+      console.log("objectToAdd => ", objectToAdd);
       return {
-        ...root,
+        ...obj,
         items: [ //@ts-ignore
-          ...(root.items ?? []),
+          ...obj.items,
           objectToAdd,
         ],
       };
     }
     // @ts-ignore
-    if (root.items) {
+    if (obj.items) {
       return {
-        ...root, // @ts-ignore
-        items: addObject(root.items, id, objectToAdd),
+        ...obj, // @ts-ignore
+        items: addObject(obj, id, objectToAdd),
       }
     }
-    return root;
+    return obj;
   });
 };
