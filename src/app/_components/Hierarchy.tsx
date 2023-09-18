@@ -54,7 +54,7 @@ function Hierarchy({ root }: { root: CEO | Head | Team | Member }) {
             </div>
             <div className="">
               <EditIcon onClick={() => console.log("Edit is clicked")} />
-              <AddIcon onClick={() => toggleAdd()} />
+              {(root.position==undefined || [0,1,2,3].includes(positions.indexOf(root.position))) && <AddIcon onClick={() => toggleAdd()} />}
               <RemoveIcon onClick={() => console.log("Remove is clicked")} />
               <MoreHorizIcon onClick={() => console.log("More is clicked")} />
             </div>
