@@ -6,12 +6,14 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import AddHeadOrCeoPopUp from "./AddHeadOrCeoPopUp";
 import { useStore } from "../store";
 import AddTeamPopUp from "./AddTeamPopUp";
+import AddMemberPopUp from "./AddMemberPopUp";
 
 function Hierarchy({ root }: { root: CEO | Head | Team | Member }) {
   const [expand, setExpand] = useState(false);
 
   const [addHeadOrCeoPopUp, setAddHeadOrCeoPopUp] = useState(false);
   const [addTeamPopUp, setAddTeamPopUp] = useState(false);
+  const [addMemberPopUp, setAddMemberPopUp] = useState(false);
   const positions = useStore((store) => store.positions);
 
   const toggleAddHeadOrCeoPopUp = () => {
@@ -22,11 +24,17 @@ function Hierarchy({ root }: { root: CEO | Head | Team | Member }) {
     setAddTeamPopUp((prev) => !prev);
   };
 
+  const toggleAddMemberPopUp = () => {
+    setAddMemberPopUp((prev) => !prev);
+  }
+
   const toggleAdd = () => { //@ts-ignore
     if (root.position === 'CEO') {
       toggleAddHeadOrCeoPopUp(); //@ts-ignore
     } else if ([1,2,3].includes(positions.indexOf(root.position))) {
       toggleAddTeamPopUp()
+    } else {
+      toggleAddMemberPopUp();
     }
   }
 
@@ -39,7 +47,6 @@ function Hierarchy({ root }: { root: CEO | Head | Team | Member }) {
   };
   // @ts-ignore we are checking if root.items so it won't go in the if loop anyways
   if (root.items) {
-    console.log("root => ", root)
     return (
       <div style={{ cursor: "pointer" }}>
         <div onClick={() => setExpand(!expand)}>
@@ -78,6 +85,9 @@ function Hierarchy({ root }: { root: CEO | Head | Team | Member }) {
               toggle={toggleAddTeamPopUp}
               parent={root}
             />
+        )}
+        {root.position == undefined && addMemberPopUp && (
+          <AddMemberPopUp toggle={toggleAddMemberPopUp} parent={root}></AddMemberPopUp>
         )}
         <div style={itemsDivStyle}>
           {/* @ts-ignore  */}
