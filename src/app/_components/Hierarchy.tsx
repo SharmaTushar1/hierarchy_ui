@@ -97,8 +97,20 @@ function Hierarchy({ root }: { root: CEO | Head | Team | Member }) {
         </div>
       </div>
     );
-  } else {
-    return <div key={root.id}>🧑 {root.name} </div>;
+  } else { // member
+    return <div className="mx-auto flex justify-between">
+      <div>
+        <span>{/* @ts-ignore */}
+          {`🧑 ${root.position} ${root.name}`}
+        </span>{" "}
+        {/* First position if it's a CEO | Head otherwise name if it's a Team */}
+      </div>
+      <div className="">
+        <EditIcon onClick={() => console.log("Edit Member is clicked")} />
+        <RemoveIcon onClick={() => console.log("Remove Member is clicked")} />
+        <MoreHorizIcon onClick={() => console.log("Member Details is clicked")} />
+      </div>
+    </div>;
   }
 }
 
