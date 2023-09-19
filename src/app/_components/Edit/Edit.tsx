@@ -1,14 +1,8 @@
 // user is not allowed to change position and id of the user.
 
-import { useState } from "react";
 import EditMember from "./EditMember"
 import EditTeam from "./EditTeam";
-import { useStore } from "@/app/store";
 import EditHeadOrCeo from "./EditHeadOrCeo";
-
-const Member = () => {
-
-}
 
 // object can be employee or Team
 
