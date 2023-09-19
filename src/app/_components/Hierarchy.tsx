@@ -3,11 +3,13 @@ import EditIcon from "@mui/icons-material/Edit";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import AddHeadOrCeoPopUp from "./AddHeadOrCeoPopUp";
+import AddHeadOrCeoPopUp from "./Add/AddHeadOrCeoPopUp";
 import { useStore } from "../store";
 import AddTeamPopUp from "./AddTeamPopUp";
 import AddMemberPopUp from "./AddMemberPopUp";
 import { removeObjects } from "./lib/removeObjects";
+import AddTeamPopUp from "./Add/AddTeamPopUp";
+import AddMemberPopUp from "./Add/AddMemberPopUp";
 
 function Hierarchy({ root }: { root: CEO | Head | Team | Member }) {
   const [expand, setExpand] = useState(false);

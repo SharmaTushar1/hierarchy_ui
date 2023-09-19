@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useStore } from "./store";
 import Hierarchy from "./_components/Hierarchy";
-import AddHeadOrCeoPopUp from "./_components/AddHeadOrCeoPopUp";
+import AddHeadOrCeoPopUp from "./_components/Add/AddHeadOrCeoPopUp";
 
 
 const PageClient = () => {

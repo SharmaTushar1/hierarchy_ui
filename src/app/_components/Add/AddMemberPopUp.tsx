@@ -1,6 +1,6 @@
+import { useStore } from "@/app/store";
 import { useForm } from "react-hook-form";
-import { useStore } from "../store";
-import { addObject } from "./lib/addObject";
+import { addObject } from "../lib/addObject";
 
 const AddMemberPopUp = ({toggle, parent}: {toggle: ()=>void, parent: Team}) => {
 

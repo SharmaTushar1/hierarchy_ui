@@ -1,8 +1,8 @@
 // Add Member component. This will be triggered when user clicks the Add Member button and is the only thing visible in the app when it is loaded at first i.e. when the employees array is empty.
 // This will be used for adding CEO and head of employees as the have similar data structure.
 
+import { useStore } from "@/app/store";
 import { useState } from "react";
-import { useStore } from "../store";
 import { useForm } from 'react-hook-form';
 
 const AddHeadOrCeoPopUp = ({toggle, parent}: {toggle: () => void, parent: number | null}) => {
