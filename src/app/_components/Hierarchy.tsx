@@ -2,12 +2,11 @@ import { useState } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+// import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import AddHeadOrCeoPopUp from "./Add/AddHeadOrCeoPopUp";
 import { useStore } from "../store";
-import AddTeamPopUp from "./AddTeamPopUp";
-import AddMemberPopUp from "./AddMemberPopUp";
 import { removeObjects } from "./lib/removeObjects";
+import Edit from "./Edit/Edit";
 import AddTeamPopUp from "./Add/AddTeamPopUp";
 import AddMemberPopUp from "./Add/AddMemberPopUp";
 
@@ -17,6 +16,7 @@ function Hierarchy({ root }: { root: CEO | Head | Team | Member }) {
   const [addHeadOrCeoPopUp, setAddHeadOrCeoPopUp] = useState(false);
   const [addTeamPopUp, setAddTeamPopUp] = useState(false);
   const [addMemberPopUp, setAddMemberPopUp] = useState(false);
+  const [showEditPopUp, setShowEditPopUp] = useState(false);
   const positions = useStore((store) => store.positions);
   const rootEmployee = useStore((store) => store.rootEmployee);
   const setRootEmployee = useStore((store) => store.setRootEmployee);
@@ -63,6 +63,11 @@ function Hierarchy({ root }: { root: CEO | Head | Team | Member }) {
     localStorage.setItem('rootEmployee', JSON.stringify(updatedRootEmployee));
   }
 
+  const toggleEditPopUp = (employee) => {
+    console.log(employee);
+    setShowEditPopUp(prev => !prev)
+  }
+
   // @ts-ignore we are checking if root.items so it won't go in the if loop anyways
   if (root.items) {
     return (
@@ -78,10 +83,10 @@ function Hierarchy({ root }: { root: CEO | Head | Team | Member }) {
               {/* First position if it's a CEO | Head otherwise name if it's a Team */}
             </div>
             <div className="">
-              <EditIcon onClick={() => console.log("Edit is clicked")} />
+              <EditIcon onClick={() => toggleEditPopUp(root)} />
               {(root.position==undefined || [0,1,2,3].includes(positions.indexOf(root.position))) && <AddIcon onClick={() => toggleAdd()} />}
               <RemoveIcon onClick={() => handleRemove(root)} />
-              <MoreHorizIcon onClick={() => console.log("More is clicked")} />
+              {/* <MoreHorizIcon onClick={() => toggleEditPopUp(root)} /> */}
             </div>
           </div>
         </div>
@@ -113,6 +118,7 @@ function Hierarchy({ root }: { root: CEO | Head | Team | Member }) {
             return <Hierarchy key={item.id} root={item}></Hierarchy>;
           })}
         </div>
+      {showEditPopUp && <Edit toggle={toggleEditPopUp} object={root} />}
       </div>
     );
   } else { // member
@@ -124,10 +130,11 @@ function Hierarchy({ root }: { root: CEO | Head | Team | Member }) {
         {/* First position if it's a CEO | Head otherwise name if it's a Team */}
       </div>
       <div className="">
-        <EditIcon onClick={() => console.log("Edit Member is clicked")} />
+        <EditIcon onClick={() => toggleEditPopUp(root)} />
         <RemoveIcon onClick={() => handleRemove(root)} />
-        <MoreHorizIcon onClick={() => console.log("Member Details is clicked")} />
+        {/* <MoreHorizIcon onClick={} /> */}
       </div>
+      {showEditPopUp && <Edit toggle={toggleEditPopUp} object={root} />}
     </div>;
   }
 }
