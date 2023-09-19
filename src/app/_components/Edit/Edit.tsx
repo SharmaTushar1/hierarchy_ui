@@ -8,8 +8,6 @@ import EditHeadOrCeo from "./EditHeadOrCeo";
 
 const Edit = ({toggle, object}: {toggle: ()=>void, object: CEO | Head | Team | Member}) => {
 
-  console.log("object from edit => ", object);
-
   const editPopUp = () => {
     if (!object.items) {
       return <EditMember itemToEdit = {object} />;
@@ -25,8 +23,6 @@ const Edit = ({toggle, object}: {toggle: ()=>void, object: CEO | Head | Team | M
       <div className="flex justify-between m-8 mx-auto">
         <h2>Edit</h2>
         <span className="cursor-pointer" onClick={() => toggle()}>X</span>
-      </div>
-      <div>
       </div>
       <div>
         {editPopUp()}
