@@ -12,17 +12,9 @@ const AddTeamPopUp = ({toggle, parent}: {toggle: ()=>void, parent: Head}) => {
 
   const { register, handleSubmit, formState: { errors } } = useForm();
 
-  // const findParent = (id: string) => {
-  //   const targetTeam = rootEmployee.items.find((head) => {
-  //     return rootEmployee.items.some((team) => team.id === id);
-  //   });
-  // }
-
   const onSubmit = (teamData: any) => { // TODO: take care of this for now just using any
     const teamToAdd = {...teamData, items: []};
     const obj = addObject(rootEmployee, parent.id, teamToAdd);
-    console.log("obj => ", ...obj);
-    // console.log("object[0] => ", obj[0])
     const updatedRootEmployee = {...rootEmployee, items: [...obj]};
     setRootEmployee(updatedRootEmployee);
     localStorage.setItem('rootEmployee', JSON.stringify(updatedRootEmployee)); // Storing in localstorage
