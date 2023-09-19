@@ -1,5 +1,3 @@
-// FIXME: Not sure if this is the file but adding team is making bugs so a new undefined object is created and that has the team that we just added.
-
 import { useForm } from "react-hook-form";
 import { useStore } from "@/app/store";
 import { addObject } from "../lib/addObject";
