@@ -1,23 +1,21 @@
 import AddTeamPopUp from "./AddTeamPopUp";
 import AddHeadOrCeoPopUp from "./AddHeadOrCeoPopUp";
 import AddMemberPopUp from "./AddMemberPopUp";
-import { useStore } from "@/app/store";
+import { isCEO, isHead, isTeam } from "../lib/typeChecker";
 
-// object can be employee or Team
+// parent object basically means where we clicked the add button. So, we are adding a member inside the object hence we will be passing it as parent below.
 
 const Add = ({toggle, object}: {toggle: ()=>void, object: null | CEO | Head | Team | Member}) => {
 
-  const positions = useStore(state => state.positions);
-
   const addPopUp = () => {
-    if (!object) { // if object is null then we are adding the CEO
+    if (!object) { // if parent object is null then we are adding the CEO
       return <AddHeadOrCeoPopUp parent = {object} />
-    } else if (!object.position) {
-      return <AddMemberPopUp parent = {object} />;
-    } else if ([1,2,3].includes(positions.indexOf(object.position))) { // object is a team
+    } else if (isCEO(object)) { // object is one of the three heads
+      return <AddHeadOrCeoPopUp parent = {object} />
+    } else if (isHead(object)) { // object is a team
       return <AddTeamPopUp parent = {object} />;
-    } else { // object is one of the three heads or CEO
-      return <AddHeadOrCeoPopUp parent = {object} />
+    } else if (isTeam(object)) { // parent object is a team so we will be adding a Member
+      return <AddMemberPopUp parent = {object} />;
     }
   }
 
