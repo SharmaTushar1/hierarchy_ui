@@ -1,2 +1,3 @@
 - Id should be unique for all. Everything included from employee to teams.
 - CEO must be created first then heads then teams then leaders and so on.
+- To filter a user you can go to /filter and there search accordingly. You can use name, number or email using the drop down select.
