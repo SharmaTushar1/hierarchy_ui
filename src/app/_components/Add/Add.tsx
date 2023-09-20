@@ -5,12 +5,14 @@ import { useStore } from "@/app/store";
 
 // object can be employee or Team
 
-const Add = ({toggle, object}: {toggle: ()=>void, object: CEO | Head | Team | Member}) => {
+const Add = ({toggle, object}: {toggle: ()=>void, object: null | CEO | Head | Team | Member}) => {
 
   const positions = useStore(state => state.positions);
 
   const addPopUp = () => {
-    if (!object.position) {
+    if (!object) { // if object is null then we are adding the CEO
+      return <AddHeadOrCeoPopUp parent = {object} />
+    } else if (!object.position) {
       return <AddMemberPopUp parent = {object} />;
     } else if ([1,2,3].includes(positions.indexOf(object.position))) { // object is a team
       return <AddTeamPopUp parent = {object} />;
