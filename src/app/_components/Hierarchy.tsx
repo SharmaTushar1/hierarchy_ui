@@ -12,7 +12,6 @@ function Hierarchy({ root }: { root: CEO | Head | Team | Member }) {
 
   const [addPopUp, setAddPopUp] = useState(false);
   const [showEditPopUp, setShowEditPopUp] = useState(false);
-  const positions = useStore((store) => store.positions);
   const rootEmployee = useStore((store) => store.rootEmployee);
   const setRootEmployee = useStore((store) => store.setRootEmployee);
 

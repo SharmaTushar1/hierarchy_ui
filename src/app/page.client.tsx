@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { useStore } from "./store";
 import Hierarchy from "./_components/Hierarchy";
-import AddHeadOrCeoPopUp from "./_components/Add/AddHeadOrCeoPopUp";
 import Add from "./_components/Add/Add";
 
 
