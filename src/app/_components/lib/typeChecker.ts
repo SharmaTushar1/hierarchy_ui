@@ -18,6 +18,7 @@ export const isTeam = ( object: any ): object is Team =>
   object !== null &&
   typeof object.id === "string" &&
   typeof object.name === "string" &&
+  !object.position &&
   Array.isArray(object.items) &&
   object.items.every((item: any) => isMember(item))
 
