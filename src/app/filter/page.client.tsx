@@ -20,7 +20,6 @@ const PageClient = () => {
     setValue(event.target.value);
     if (option === 'name') {
       setFilteredArray(employeeCollector.filter(item => item.name.toLowerCase().includes(event.target.value.toLowerCase())));
-      console.log("filteredArray from inside the client=> ", filteredArray);
     } else if (option === 'phone') {
       setFilteredArray(employeeCollector.filter(item => item.phone_number.toLowerCase().includes(event.target.value.toLowerCase())));
     } else if (option === 'email') {

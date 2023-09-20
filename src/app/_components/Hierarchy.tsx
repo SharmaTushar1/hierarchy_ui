@@ -45,7 +45,6 @@ function Hierarchy({ root }: { root: CEO | Head | Team | Member }) {
   }
 
   if (!isMember(root)) {
-    console.log(root);
     return (
       <div style={{ cursor: "pointer" }}>
         <div onClick={() => setExpand(!expand)}>

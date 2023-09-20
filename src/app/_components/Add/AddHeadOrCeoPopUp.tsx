@@ -3,6 +3,7 @@
 
 import { useStore } from "@/app/store";
 import { useForm } from 'react-hook-form';
+import { v4 as uuidv4 } from 'uuid';
 
 const AddHeadOrCeoPopUp = ({parent}: {parent: null | CEO | Head}) => {
 
@@ -20,9 +21,9 @@ const AddHeadOrCeoPopUp = ({parent}: {parent: null | CEO | Head}) => {
   const onSubmit = (employeeData: any) => { // TODO: take care of this for now just using any
     let updatedRootEmployee = {...rootEmployee};
     if (employeeData.position === 'CEO') {
-        updatedRootEmployee = {...employeeData, items: []};
+        updatedRootEmployee = {id: uuidv4(), ...employeeData, items: []};
     } else {
-      const headEmployee = {...employeeData, items: []};
+      const headEmployee = {id: uuidv4(), ...employeeData, items: []};
       updatedRootEmployee.items.push(headEmployee);
     }
     setRootEmployee(updatedRootEmployee);
@@ -53,12 +54,6 @@ const AddHeadOrCeoPopUp = ({parent}: {parent: null | CEO | Head}) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <label htmlFor="id">Employee Id: </label>
-        <input placeholder="Employee ID" id="id" {...register('id', { required: 'ID is required' })} />
-        {errors.id && <span>{errors.id.message as string}</span>}
-      </div>
-
       <div>
         <label htmlFor="name">Employee Name: </label>
         <input placeholder="Employee Name" id="name" {...register('name', { required: 'Name is required' })} />

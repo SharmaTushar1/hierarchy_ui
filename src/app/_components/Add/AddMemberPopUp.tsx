@@ -1,6 +1,7 @@
 import { useStore } from "@/app/store";
 import { useForm } from "react-hook-form";
 import { addObject } from "../lib/addObject";
+import { v4 as uuidv4 } from 'uuid';
 
 const AddMemberPopUp = ({parent}: {parent: Team}) => {
 
@@ -14,7 +15,7 @@ const AddMemberPopUp = ({parent}: {parent: Team}) => {
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = (memberData: any) => { // TODO: take care of this for now just using any
-    const memberToAdd:Member = {...memberData, isLeader: positions.indexOf(memberData.position) == 4}
+    const memberToAdd:Member = {id: uuidv4(), ...memberData, isLeader: positions.indexOf(memberData.position) == 4}
     const obj = addObject(rootEmployee, parent.id, memberToAdd);
     const updatedRootEmployee = {...rootEmployee, items: [...obj]};
     setRootEmployee(updatedRootEmployee);
@@ -23,11 +24,6 @@ const AddMemberPopUp = ({parent}: {parent: Team}) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <label htmlFor="id">Employee Id: </label>
-        <input placeholder="Employee ID" id="id" {...register('id', { required: 'ID is required' })} />
-        {errors.id && <span>{errors.id.message as string}</span>}
-      </div>
 
       <div>
         <label htmlFor="name">Employee Name: </label>
