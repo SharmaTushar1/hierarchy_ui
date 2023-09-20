@@ -6,6 +6,7 @@ import { useStore } from "../store";
 import { removeObjects } from "./lib/removeObjects";
 import Edit from "./Edit/Edit";
 import Add from "./Add/Add";
+import { isMember, isTeam } from "./lib/typeChecker";
 
 function Hierarchy({ root }: { root: CEO | Head | Team | Member }) {
   const [expand, setExpand] = useState(false);
@@ -27,7 +28,7 @@ function Hierarchy({ root }: { root: CEO | Head | Team | Member }) {
     display: expand ? "block" : "none",
   };
 
-  const handleRemove = (employee) => {
+  const handleRemove = (employee: any) => {
     let updatedRootEmployee = {} as CEO;
     if (employee.position === 'CEO') {
       setRootEmployee(updatedRootEmployee);
@@ -39,26 +40,25 @@ function Hierarchy({ root }: { root: CEO | Head | Team | Member }) {
     localStorage.setItem('rootEmployee', JSON.stringify(updatedRootEmployee));
   }
 
-  const toggleEditPopUp = (employee) => {
+  const toggleEditPopUp = () => {
     setShowEditPopUp(prev => !prev)
   }
 
-  // @ts-ignore we are checking if root.items so it won't go in the if loop anyways
-  if (root.items) {
+  if (!isMember(root)) {
+    console.log(root);
     return (
       <div style={{ cursor: "pointer" }}>
         <div onClick={() => setExpand(!expand)}>
           <div className="mx-auto flex justify-between">
             <div>
               <span>
-                {root.position!=undefined //@ts-ignore
+                {!isTeam(root) //@ts-ignore
                   ? `🧑 ${root.position} (${root.name})`
                   : `™${root.name}`}
               </span>{" "}
-              {/* First position if it's a CEO | Head otherwise name if it's a Team */}
             </div>
             <div className="">
-              <EditIcon onClick={() => toggleEditPopUp(root)} />
+              <EditIcon onClick={() => toggleEditPopUp()} />
               <AddIcon onClick={() => toggleAddPopUp()} />
               <RemoveIcon onClick={() => handleRemove(root)} />
             </div>
@@ -66,12 +66,11 @@ function Hierarchy({ root }: { root: CEO | Head | Team | Member }) {
         </div>
         {addPopUp && (
             <Add
-              toggle={toggleAddPopUp} //@ts-ignore
+              toggle={toggleAddPopUp}
               object={root}
             />
         )}
-        <div style={itemsDivStyle}>
-          {/* @ts-ignore  */}
+        <div style={itemsDivStyle}>{/* @ts-ignore already checking if it's a member or not*/}
           {root.items.map((item: Head | Team) => {
             return <Hierarchy key={item.id} root={item}></Hierarchy>;
           })}
@@ -85,12 +84,10 @@ function Hierarchy({ root }: { root: CEO | Head | Team | Member }) {
         <span>{/* @ts-ignore */}
           {`🧑 ${root.position} ${root.name}`}
         </span>{" "}
-        {/* First position if it's a CEO | Head otherwise name if it's a Team */}
       </div>
       <div className="">
-        <EditIcon onClick={() => toggleEditPopUp(root)} />
+        <EditIcon onClick={() => toggleEditPopUp()} />
         <RemoveIcon onClick={() => handleRemove(root)} />
-        {/* <MoreHorizIcon onClick={} /> */}
       </div>
       {showEditPopUp && <Edit toggle={toggleEditPopUp} object={root} />}
     </div>;

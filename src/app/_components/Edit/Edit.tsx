@@ -3,18 +3,19 @@
 import EditMember from "./EditMember"
 import EditTeam from "./EditTeam";
 import EditHeadOrCeo from "./EditHeadOrCeo";
+import { isCEO, isHead, isMember, isTeam } from "../lib/typeChecker";
 
 // object can be employee or Team
 
 const Edit = ({toggle, object}: {toggle: ()=>void, object: CEO | Head | Team | Member}) => {
 
   const editPopUp = () => {
-    if (!object.items) {
-      return <EditMember itemToEdit = {object} />;
-    } else if (!object.position) { // object is a team
-      return <EditTeam itemToEdit = {object} />;
-    } else { // object is one of the three heads or CEO
+    if (isHead(object) || isCEO(object)) { // object is one of the three heads or CEO
       return <EditHeadOrCeo itemToEdit = {object} />
+    } else if (isTeam(object)) { // @ts-ignore as we are checking if object is a team
+      return <EditTeam itemToEdit = {object} />;
+    } else if (isMember(object)) {
+      return <EditMember itemToEdit = {object} />;
     }
   }
 
