@@ -1,0 +1,2 @@
+- Id should be unique for all. Everything included from employee to teams.
+- CEO must be created first then heads then teams then leaders and so on.
