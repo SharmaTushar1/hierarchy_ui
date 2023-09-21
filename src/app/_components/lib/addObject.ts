@@ -1,5 +1,3 @@
-// TODO: Use this function for adding object everywhere
-
 export const addObject = (root: CEO | Head | Team | Member, id: string, objectToAdd: Head | Team | Member) => {
   //@ts-ignore
   return root.items.map((obj) => {
