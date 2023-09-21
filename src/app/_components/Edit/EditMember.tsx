@@ -18,7 +18,7 @@ const EditMember = ({itemToEdit}: {itemToEdit: Member}) => {
     const obj = editObject(rootEmployee, itemToEdit, updatedMember);
     const updatedRootEmployee = {...rootEmployee, items: [...obj]};
     setRootEmployee(updatedRootEmployee);
-    localStorage.setItem('rootEmployee', JSON.stringify(updatedRootEmployee)); // Storing in localstorage
+    if (typeof window !== 'undefined') localStorage.setItem('rootEmployee', JSON.stringify(updatedRootEmployee)); // Storing in localstorage
   };
 
   return (

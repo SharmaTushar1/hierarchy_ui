@@ -19,7 +19,7 @@ const AddMemberPopUp = ({parent}: {parent: Team}) => {
     const obj = addObject(rootEmployee, parent.id, memberToAdd);
     const updatedRootEmployee = {...rootEmployee, items: [...obj]};
     setRootEmployee(updatedRootEmployee);
-    localStorage.setItem('rootEmployee', JSON.stringify(updatedRootEmployee)); // Storing in localstorage
+    if (typeof window !== 'undefined') localStorage.setItem('rootEmployee', JSON.stringify(updatedRootEmployee)); // Storing in localstorage
   };
 
   return (

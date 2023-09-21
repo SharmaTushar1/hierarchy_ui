@@ -27,7 +27,7 @@ const AddHeadOrCeoPopUp = ({parent}: {parent: null | CEO | Head}) => {
       updatedRootEmployee.items.push(headEmployee);
     }
     setRootEmployee(updatedRootEmployee);
-    localStorage.setItem('rootEmployee', JSON.stringify(updatedRootEmployee)); // Storing in localstorage
+    if (typeof window !== 'undefined') localStorage.setItem('rootEmployee', JSON.stringify(updatedRootEmployee)); // Storing in localstorage
   };
 
   const DropDown = () => {
