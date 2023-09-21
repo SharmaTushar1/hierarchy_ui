@@ -18,7 +18,7 @@ const PageClient = () => {
   return (
     <div>
       {Object.values(rootEmployee).length==0 ? (<button className="m-8" onClick={() => toggleAddMemberPopUp()}>Add Member</button>): (
-        <Hierarchy root = {rootEmployee} />
+        <Hierarchy root = {rootEmployee} index={undefined} />
       )}
       {addMemberPopUp && <Add toggle={toggleAddMemberPopUp} object={null} />}
     </div>
