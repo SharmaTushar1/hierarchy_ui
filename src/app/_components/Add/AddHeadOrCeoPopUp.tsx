@@ -18,7 +18,7 @@ const AddHeadOrCeoPopUp = ({parent}: {parent: null | CEO | Head}) => {
   const validateEmail = (value: string) => /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(value) || 'Invalid email';
 
 
-  const onSubmit = (employeeData: any) => { // TODO: take care of this for now just using any
+  const onSubmit = (employeeData: any) => {
     let updatedRootEmployee = {...rootEmployee};
     if (employeeData.position === 'CEO') {
         updatedRootEmployee = {id: uuidv4(), ...employeeData, items: []};

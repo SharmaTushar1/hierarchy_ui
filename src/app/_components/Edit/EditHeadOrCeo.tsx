@@ -11,7 +11,7 @@ const EditHeadOrCeo = ({itemToEdit}: {itemToEdit: CEO | Head}) => {
 
   const validatePhoneNumber = (value: string) => /^\d{10}$/.test(value) || 'Phone number must be 10 digits';
   const validateEmail = (value: string) => /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(value) || 'Invalid email';
-  const onSubmit = (newEmployeeData: any) => { // TODO: take care of this for now just using any
+  const onSubmit = (newEmployeeData: any) => {
 
     let updatedRootEmployee = {...itemToEdit, ...newEmployeeData}
     if (itemToEdit.position != 'CEO') { // if it's not CEO then only we do deep copy for CEO the new object is already has all the data so no need to deep copy just set it to our global state.

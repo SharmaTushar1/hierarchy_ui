@@ -10,7 +10,7 @@ const AddTeamPopUp = ({parent}: {parent: Head}) => {
 
   const { register, handleSubmit, formState: { errors } } = useForm();
 
-  const onSubmit = (teamData: any) => { // TODO: take care of this for now just using any
+  const onSubmit = (teamData: any) => {
     const teamToAdd: Team = {id: uuidv4(), ...teamData, items: []};
     const obj = addObject(rootEmployee, parent.id, teamToAdd);
     const updatedRootEmployee = {...rootEmployee, items: [...obj]};

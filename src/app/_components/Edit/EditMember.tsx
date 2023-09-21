@@ -13,7 +13,7 @@ const EditMember = ({itemToEdit}: {itemToEdit: Member}) => {
 
   const { register, handleSubmit, formState: { errors } } = useForm();
 
-  const onSubmit = (memberData: any) => { // TODO: take care of this for now just using any
+  const onSubmit = (memberData: any) => {
     const updatedMember:Member = {...itemToEdit, ...memberData}
     const obj = editObject(rootEmployee, itemToEdit, updatedMember);
     const updatedRootEmployee = {...rootEmployee, items: [...obj]};

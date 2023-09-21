@@ -9,7 +9,7 @@ const EditTeam = ({ itemToEdit}: {itemToEdit: Head}) => {
 
   const { register, handleSubmit, formState: { errors } } = useForm();
 
-  const onSubmit = (teamData: any) => { // TODO: take care of this for now just using any
+  const onSubmit = (teamData: any) => {
     const updatedTeam: Team = {...itemToEdit, ...teamData};
     const obj = editObject(rootEmployee, itemToEdit, updatedTeam);
     const updatedRootEmployee = {...rootEmployee, items: [...obj]};
