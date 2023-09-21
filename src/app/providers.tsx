@@ -5,6 +5,7 @@ import { DragDropContext, DropResult } from "react-beautiful-dnd"
 import { useStore } from "./store"
 import { findTeam } from "./lib/findTeam"
 import { editObject } from "./_components/lib/editObject"
+import { findParent } from "./lib/findParent"
 
 const Providers = ({children}: {children: ReactNode}) => {
 
@@ -16,7 +17,8 @@ const Providers = ({children}: {children: ReactNode}) => {
     // if user is dropping at a position where dropping is not allowed
     if (!destination) return;
     // if the user is dropping at the same position where the item initially is
-    if (destination.droppableId === source.droppableId && destination.index === source.index) return;
+    if (destination.droppableId === source.droppableId && destination.index === source.index) return; // @ts-ignore as we are passing team so it will have head as parent which will always have a position
+    if (findParent(rootEmployee, destination.droppableId)?.position !== findParent(rootEmployee, source.droppableId)?.position) return;
     //@ts-ignore it gives warning but it will have value that's why we are dragging in first place.
     let sourceTeam: Team = findTeam(rootEmployee, source.droppableId);
     const sourceIndex = source.index;
