@@ -1,7 +1,5 @@
 // check if it's a team member or leader
 
-import { useStore } from "@/app/store";
-
 const positions = ['Head of Design', 'Head of Engineering', 'Head of Staff']
 
 export const isMember = (object: any): object is Member =>
