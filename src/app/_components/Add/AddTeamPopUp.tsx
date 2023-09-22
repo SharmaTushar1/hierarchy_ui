@@ -11,7 +11,7 @@ const AddTeamPopUp = ({parent, toggle}: {parent: Head, toggle: () => void}) => {
 
   const { register, handleSubmit, formState: { errors } } = useForm();
 
-  const sameNameTeamCheck = (value: string) => !hasTeam(rootEmployee, value) || 'Team with name already exists';
+  const sameNameTeamCheck = (value: string) => !hasTeam(rootEmployee, value) || 'Team with name already exists. Choose a different name.';
 
   const onSubmit = (teamData: any) => {
     const teamToAdd: Team = {id: uuidv4(), ...teamData, items: []};
