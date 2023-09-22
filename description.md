@@ -29,3 +29,7 @@ NOTE: Since, I'm using NEXT.JS. There can be some hydration errors/warnings when
 
 - Two teams cannot have the same name.
 - We should be able to select a Team/Head and should be able to see all the employees who are under them.
+
+## Tech Used
+
+- Typescript, NextJS, Material UI, Zustand.
