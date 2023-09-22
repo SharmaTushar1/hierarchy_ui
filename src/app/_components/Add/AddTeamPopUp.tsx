@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { useStore } from "@/app/store";
 import { addObject } from "../lib/addObject";
 import { v4 as uuidv4 } from 'uuid';
+import { hasTeam } from "../lib/hasTeam";
 
 const AddTeamPopUp = ({parent, toggle}: {parent: Head, toggle: () => void}) => {
 
@@ -9,6 +10,8 @@ const AddTeamPopUp = ({parent, toggle}: {parent: Head, toggle: () => void}) => {
   const rootEmployee = useStore(state => state.rootEmployee);
 
   const { register, handleSubmit, formState: { errors } } = useForm();
+
+  const sameNameTeamCheck = (value: string) => !hasTeam(rootEmployee, value) || 'Team with name already exists';
 
   const onSubmit = (teamData: any) => {
     const teamToAdd: Team = {id: uuidv4(), ...teamData, items: []};
@@ -24,7 +27,7 @@ const AddTeamPopUp = ({parent, toggle}: {parent: Head, toggle: () => void}) => {
 
       <div>
         <label htmlFor="name">Team Name: </label>
-        <input placeholder="Team Name" id="name" {...register('name', { required: 'Name is required' })} />
+        <input placeholder="Team Name" id="name" {...register('name', { required: 'Name is required', validate: sameNameTeamCheck})} />
         {errors.name && <span>{errors.name.message as string}</span>}
       </div>
 
