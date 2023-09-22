@@ -3,7 +3,7 @@ import { useStore } from "@/app/store";
 import { addObject } from "../lib/addObject";
 import { v4 as uuidv4 } from 'uuid';
 
-const AddTeamPopUp = ({parent}: {parent: Head}) => {
+const AddTeamPopUp = ({parent, toggle}: {parent: Head, toggle: () => void}) => {
 
   const setRootEmployee = useStore(state => state.setRootEmployee);
   const rootEmployee = useStore(state => state.rootEmployee);
@@ -16,6 +16,7 @@ const AddTeamPopUp = ({parent}: {parent: Head}) => {
     const updatedRootEmployee = {...rootEmployee, items: [...obj]};
     setRootEmployee(updatedRootEmployee);
     if (typeof window !== 'undefined') localStorage.setItem('rootEmployee', JSON.stringify(updatedRootEmployee)); // Storing in localstorage
+    toggle();
   };
 
   return (

@@ -5,7 +5,7 @@ import { useStore } from "@/app/store";
 import { useForm } from 'react-hook-form';
 import { v4 as uuidv4 } from 'uuid';
 
-const AddHeadOrCeoPopUp = ({parent}: {parent: null | CEO | Head}) => {
+const AddHeadOrCeoPopUp = ({parent, toggle}: {parent: null | CEO | Head, toggle: () => void}) => {
 
   const positions = useStore(state => state.positions);
   const setRootEmployee = useStore(state => state.setRootEmployee);
@@ -28,6 +28,7 @@ const AddHeadOrCeoPopUp = ({parent}: {parent: null | CEO | Head}) => {
     }
     setRootEmployee(updatedRootEmployee);
     if (typeof window !== 'undefined') localStorage.setItem('rootEmployee', JSON.stringify(updatedRootEmployee)); // Storing in localstorage
+    toggle();
   };
 
   const DropDown = () => {

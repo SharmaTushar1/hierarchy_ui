@@ -2,7 +2,7 @@ import { useStore } from "../../store";
 import { useForm } from 'react-hook-form';
 import { editObject } from "../lib/editObject";
 
-const EditHeadOrCeo = ({itemToEdit}: {itemToEdit: CEO | Head}) => {
+const EditHeadOrCeo = ({itemToEdit, toggle}: {itemToEdit: CEO | Head, toggle: () => void}) => {
 
   const setRootEmployee = useStore(state => state.setRootEmployee);
   const rootEmployee = useStore(state => state.rootEmployee);
@@ -20,6 +20,7 @@ const EditHeadOrCeo = ({itemToEdit}: {itemToEdit: CEO | Head}) => {
     }
     setRootEmployee(updatedRootEmployee);
     if (typeof window !== 'undefined') localStorage.setItem('rootEmployee', JSON.stringify(updatedRootEmployee)); // Storing in localstorage
+    toggle();
   };
 
   return (

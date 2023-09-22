@@ -9,13 +9,13 @@ const Add = ({toggle, object}: {toggle: ()=>void, object: null | CEO | Head | Te
 
   const addPopUp = () => {
     if (!object) { // if parent object is null then we are adding the CEO
-      return <AddHeadOrCeoPopUp parent = {object} />
+      return <AddHeadOrCeoPopUp parent = {object} toggle = {toggle} />
     } else if (isCEO(object)) { // object is one of the three heads
-      return <AddHeadOrCeoPopUp parent = {object} />
+      return <AddHeadOrCeoPopUp parent = {object} toggle = {toggle} />
     } else if (isHead(object)) { // object is a team
-      return <AddTeamPopUp parent = {object} />;
+      return <AddTeamPopUp parent = {object} toggle = {toggle} />;
     } else if (isTeam(object)) { // parent object is a team so we will be adding a Member
-      return <AddMemberPopUp parent = {object} />;
+      return <AddMemberPopUp parent = {object} toggle = {toggle} />;
     }
   }
 

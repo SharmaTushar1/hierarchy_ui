@@ -11,11 +11,11 @@ const Edit = ({toggle, object}: {toggle: ()=>void, object: CEO | Head | Team | M
 
   const editPopUp = () => {
     if (isHead(object) || isCEO(object)) { // object is one of the three heads or CEO
-      return <EditHeadOrCeo itemToEdit = {object} />
+      return <EditHeadOrCeo itemToEdit = {object} toggle={toggle} />
     } else if (isTeam(object)) { // @ts-ignore as we are checking if object is a team
-      return <EditTeam itemToEdit = {object} />;
+      return <EditTeam itemToEdit = {object} toggle={toggle} />;
     } else if (isMember(object)) {
-      return <EditMember itemToEdit = {object} />;
+      return <EditMember itemToEdit = {object} toggle={toggle} />;
     }
   }
 

@@ -4,7 +4,7 @@ import { useStore } from "@/app/store";
 import { useForm } from "react-hook-form";
 import { editObject } from "../lib/editObject";
 
-const EditMember = ({itemToEdit}: {itemToEdit: Member}) => {
+const EditMember = ({itemToEdit, toggle}: {itemToEdit: Member, toggle: () => void}) => {
   const setRootEmployee = useStore(state => state.setRootEmployee);
   const rootEmployee = useStore(state => state.rootEmployee);
 
@@ -19,6 +19,7 @@ const EditMember = ({itemToEdit}: {itemToEdit: Member}) => {
     const updatedRootEmployee = {...rootEmployee, items: [...obj]};
     setRootEmployee(updatedRootEmployee);
     if (typeof window !== 'undefined') localStorage.setItem('rootEmployee', JSON.stringify(updatedRootEmployee)); // Storing in localstorage
+    toggle();
   };
 
   return (

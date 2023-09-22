@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { addObject } from "../lib/addObject";
 import { v4 as uuidv4 } from 'uuid';
 
-const AddMemberPopUp = ({parent}: {parent: Team}) => {
+const AddMemberPopUp = ({parent, toggle}: {parent: Team, toggle: () => void}) => {
 
   const positions = useStore(state => state.positions);
   const setRootEmployee = useStore(state => state.setRootEmployee);
@@ -20,6 +20,7 @@ const AddMemberPopUp = ({parent}: {parent: Team}) => {
     const updatedRootEmployee = {...rootEmployee, items: [...obj]};
     setRootEmployee(updatedRootEmployee);
     if (typeof window !== 'undefined') localStorage.setItem('rootEmployee', JSON.stringify(updatedRootEmployee)); // Storing in localstorage
+    toggle();
   };
 
   return (
