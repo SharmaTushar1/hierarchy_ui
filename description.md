@@ -12,3 +12,20 @@
 - All the features are implemented with additional features like team of same name not allowed.
 
 NOTE: Since, I'm using NEXT.JS. There can be some hydration errors/warnings when rendering the app but they won't cause any problems. You can simply ignore them. The app will be forced to client side rendering which is the goal for this type of app.
+
+# Functionalities added
+
+## **Basic** **Functionality**
+
+- We should be able to see the position name with the employee name.
+- We should be able to add a new team member.
+- We should be able to change the team of a team member. An employee from HR can't be moved to the design team.
+- We can remove a team member.
+- We should be able to update employee information.
+- We should be able to create a new Team or edit an existing one.
+- Filter an employee by Employee Name, Phone Number, and Email ID.
+
+## **Bonus points**
+
+- Two teams cannot have the same name.
+- We should be able to select a Team/Head and should be able to see all the employees who are under them.
